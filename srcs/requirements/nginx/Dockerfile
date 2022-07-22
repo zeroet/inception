@@ -8,7 +8,9 @@ RUN     apt-get install -y dumb-init nginx openssl
 
 RUN    openssl req -newkey rsa:4096 -days 365 -nodes -x509 \
         -subj "/C=FR/ST=Paris/O=42Paris/OU=Seyun/CN=localhost" \
-        -keyout /etc/ssl/private/seyun.key -out /etc/ssl/private/seyun.crt
+        -keyout /etc/ssl/private/seyun.key -out /etc/ssl/certs/seyun.crt
+
+COPY	./config/nginx.conf		/etc/nginx/nginx.conf
 
 # Default parameters that cannot be overridden when docker container run with CLI parameter
 ENTRYPOINT ["/usr/bin/dumb-init"]
