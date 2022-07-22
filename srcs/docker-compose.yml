@@ -1,0 +1,55 @@
+version: '3.0'
+
+services:
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    port:
+      - "3306:3306"
+    restart: always
+    networks:
+      - inception
+    volumes:
+      - mariadb_v:/var/lib/mysql/
+    env_file: .env
+
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    port:
+      - "9000:9000"
+    restart: always
+    networks:
+      - inception
+    volumes:
+      - wordpress_v:/var/www/
+    env_file: .env
+  
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx
+    port:
+      - "443:443"
+    restart: always
+    networks:
+      - inception
+    volumes:
+      - wordpress_v:/var/www/
+
+networks:
+  inception:
+    driver: bridge
+  
+volumes:
+  mariadb_v:
+    driver: local
+    driver_opts:
+      device: /home/seyun/data/mariadb
+      type: none
+      o: bind
+  wordpress_v:
+    dirver: local
+    dirver_opts:
+      device: /home/seyun/data/wordpress
+      type: none
+      o: bind
