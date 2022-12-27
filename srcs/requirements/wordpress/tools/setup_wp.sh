@@ -15,8 +15,3 @@ if  [ ! -f "$PROTECTION" ]; then
 	touch $PROTECTION
 fi
 exec php-fpm7.3 --nodaemonize
-
-# see more
-# wp core: https://developer.wordpress.org/cli/commands/core/
-# wp config: https://developer.wordpress.org/cli/commands/config/create/
-# wp users: https://developer.wordpress.org/cli/commands/user/
