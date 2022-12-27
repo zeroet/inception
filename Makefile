@@ -1,3 +1,5 @@
+DATA_PATH	= 	/home/seyun/data
+
 DOCKER		=	sudo docker
 
 COMPOSE		=	sudo docker compose -f srcs/docker-compose.yml
@@ -5,8 +7,8 @@ COMPOSE		=	sudo docker compose -f srcs/docker-compose.yml
 HOSTS_PATH	=	/etc/hosts
 
 init_dir	:
-				mkdir -p /home/seyun/db_volume
-				mkdir -p /home/seyun/wp_volume
+				mkdir -p $(DATA_PATH)/db_volume
+				mkdir -p $(DATA_PATH)/wp_volume
 				sudo chmod 777 $(HOSTS_PATH)
 				echo "127.0.0.1 seyun.42.fr" >> $(HOSTS_PATH)
 
@@ -20,7 +22,7 @@ clean		:
 
 fclean		:	clean
 				$(DOCKER) system prune --volumes --all --force
-				sudo rm -rf /home/seyun
+				sudo rm -rf $(DATA_PATH)
 				$(DOCKER) network prune --force
 				$(DOCKER) image prune --force
 				sudo sed -i '/seyun/d' /etc/hosts
