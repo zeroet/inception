@@ -9,6 +9,8 @@ echo "CREATE USER IF NOT EXISTS '$MARIADB_USER'@'%' IDENTIFIED BY '$MARIADB_PW'"
 # authentification : GRANT user autentification command
 echo "GRANT ALL ON $MARIADB_ID.* TO '$MARIADB_USER'@'%'" | mysql -u root
 
+echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MARIADB_ROOT_PW'" | mysql -u root
+echo "FLUSH PRIVILEGES" | mysql -u root -p $MARIADB_ROOT_PW
 
 service mysql stop
 
