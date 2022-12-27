@@ -13,4 +13,4 @@ echo "GRANT ALL ON $MARIADB_ID.* TO '$MARIADB_USER'@'%'" | mysql -u root
 service mysql stop
 
 # launch mysqsl daemon with mysqld (or mysqld_safe for security)
-exec mysqld -u root -p $MYRIADB_ROOT_PW
+exec mysqld -u root

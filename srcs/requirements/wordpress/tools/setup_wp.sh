@@ -14,4 +14,5 @@ if  [ ! -f "$PROTECTION" ]; then
 	wp user create $WORDPRESS_DFT_USER $WORDPRESS_DFT_EMAIL --role=author --user_pass=$WORDPRESS_DFT_PASSWORD --allow-root
 	touch $PROTECTION
 fi
+
 exec php-fpm7.3 --nodaemonize
