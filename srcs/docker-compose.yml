@@ -10,10 +10,11 @@ services:
     expose:
       - "3306"
     restart: always
+    tty: true
     networks:
       - inception
     volumes:
-      - mariadb-data:/var/lib/mysql/
+      - mariadb-data:/var/lib/mysql
     env_file: .env
     
   wordpress:
@@ -26,9 +27,10 @@ services:
     networks:
       - inception
     volumes:
-      - wp-data:/var/www/
+      - wp-data:/var/www/html
     depends_on:
       - mariadb
+    tty: true
     env_file: .env
 
   nginx:
@@ -38,10 +40,11 @@ services:
     ports:
       - "443:443"
     restart: always
+    tty: true
     networks:
       - inception
     volumes:
-      - wp-data:/var/www/
+      - wp-data:/var/www/html
     depends_on:
       - wordpress
 
