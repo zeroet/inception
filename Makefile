@@ -7,8 +7,8 @@ COMPOSE		=	sudo docker compose -f srcs/docker-compose.yml
 HOSTS_PATH	=	/etc/hosts
 
 init_dir	:
-				mkdir -p $(DATA_PATH)/db_volume
-				mkdir -p $(DATA_PATH)/wp_volume
+				mkdir -p $(DATA_PATH)/mariadb_data
+				mkdir -p $(DATA_PATH)/wp_data
 				sudo chmod 777 $(HOSTS_PATH)
 				echo "127.0.0.1 seyun.42.fr" >> $(HOSTS_PATH)
 
