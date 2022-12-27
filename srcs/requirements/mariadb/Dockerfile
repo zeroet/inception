@@ -1,12 +1,9 @@
 FROM     debian:buster
 
 RUN     apt-get update
-RUN     apt-get install -y mariadb-server mariadb-client dumb-init
+RUN     apt-get install -y mariadb-server mariadb-client
 
-COPY	./config/my.cnf			/tmp/
+COPY	./config/my.cnf			/etc/mysql
 COPY	./tools/setup_db.sh		/tmp/
 
-# ENTRYPOINT ["/usr/bin/dumb-init"]
-ENTRYPOINT ["/usr/bin/dumb-init"]
-
-CMD	["/tmp/setup_db.sh"]
+ENTRYPOINT [ "sh", "/tmp/setup_db.sh" ]
